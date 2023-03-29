@@ -1,0 +1,7 @@
+{
+    "operatorUrl": "http://localhost:3000/operator",
+    "operatorServiceSession": "http://localhost:3000/operator/session/",
+    "certificationAuthorityUrl": "http://localhost:3012/certification-authority",
+    "timezone": "Asia/Tokyo",
+    "pxr-root-block": true
+}
