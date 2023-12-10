@@ -24,59 +24,59 @@ export default class CertificateManage extends BaseEntity {
 
     /** 証明書タイプ */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'cert_type' })
-    certType: string = '';
+        certType: string = '';
 
     /** サブジェクト */
     @Column({ type: 'text', nullable: false, name: 'subject' })
-    subject: string = '';
+        subject: string = '';
 
     /** シリアル番号 */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'serial_no' })
-    serialNo: string = '';
+        serialNo: string = '';
 
     /** フィンガープリント */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'finger_print' })
-    fingerPrint: string = '';
+        fingerPrint: string = '';
 
     /** 有効期間開始 */
     @Column({ type: 'timestamp without time zone', name: 'valid_period_start' })
-    validPeriodStart: Date = new Date();
+        validPeriodStart: Date = new Date();
 
     /** 有効期間終了 */
     @Column({ type: 'timestamp without time zone', name: 'valid_period_end' })
-    validPeriodEnd: Date = new Date();
+        validPeriodEnd: Date = new Date();
 
     /** 証明書(PEM) */
     @Column({ type: 'text', nullable: false, name: 'certificate' })
-    certificate: string = '';
+        certificate: string = '';
 
     /** アクターカタログコード */
     @Column({ type: 'bigint', name: 'actor_code' })
-    actorCode: number = 0;
+        actorCode: number = 0;
 
     /** アクターカタログバージョン */
     @Column({ type: 'bigint', name: 'actor_version' })
-    actorVersion: number = 0;
+        actorVersion: number = 0;
 
     /** ブロックコード */
     @Column({ type: 'bigint', name: 'block_code' })
-    blockCode: number = 0;
+        blockCode: number = 0;
 
     /** ブロックバージョン */
     @Column({ type: 'bigint', name: 'block_version' })
-    blockVersion: number = 0;
+        blockVersion: number = 0;
 
     /** 配布フラグ */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_distributed' })
-    isDistributed: boolean = false;
+        isDistributed: boolean = false;
 
     /** 削除フラグ */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /** 登録者 */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string = '';
+        createdBy: string = '';
 
     /** 登録日時 */
     @CreateDateColumn({ type: 'timestamp without time zone', nullable: false, name: 'created_at' })
@@ -84,7 +84,7 @@ export default class CertificateManage extends BaseEntity {
 
     /** 更新者 */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string = '';
+        updatedBy: string = '';
 
     /** 更新日時 */
     @UpdateDateColumn({ type: 'timestamp without time zone', name: 'updated_at', onUpdate: 'now()' })

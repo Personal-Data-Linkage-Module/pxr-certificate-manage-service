@@ -17,23 +17,23 @@ export default class PostCertificateManageReqDto {
     @IsString()
     @IsDefined()
     @IsIn(['root', 'server', 'client'])
-    certType: string;
+        certType: string;
 
     /** シリアル番号 */
     @IsString()
     @IsDefined()
     @IsNotEmpty()
-    serialNo: string;
+        serialNo: string;
 
     /** フィンガープリント */
     @IsString()
     @IsDefined()
     @IsNotEmpty()
-    fingerPrint: string;
+        fingerPrint: string;
 
     /** 証明書 */
     @IsString()
     @IsDefined()
     @IsNotEmpty()
-    certificate: string;
+        certificate: string;
 }

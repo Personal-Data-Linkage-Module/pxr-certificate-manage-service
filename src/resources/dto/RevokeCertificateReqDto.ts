@@ -16,11 +16,11 @@ export default class RevokeCertificateReqDto {
     @IsString()
     @IsDefined()
     @IsNotEmpty()
-    serialNo: string;
+        serialNo: string;
 
     /** フィンガープリント */
     @IsString()
     @IsDefined()
     @IsNotEmpty()
-    fingerPrint: string;
+        fingerPrint: string;
 }
