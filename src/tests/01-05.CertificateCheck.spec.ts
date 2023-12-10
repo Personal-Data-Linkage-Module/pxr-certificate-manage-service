@@ -4,13 +4,17 @@ https://opensource.org/licenses/mit-license.php
 */
 /* eslint-disable */
 import supertest = require('supertest');
-import Application from '../index';
+import { Application } from '../resources/config/Application';
 import Common from './Common';
 import StubCertificationAuthorityServer from './StubCertificationAuthorityServer';
 import StubOperatorServer from './StubOperatorServer';
 /* eslint-enable */
 
-const expressApp = Application.express.app;
+const app = new Application();
+const expressApp = app.express.app;
+const common = new Common();
+
+app.start();
 
 describe('Certificate Manage API', () => {
     let certificateAuthorityServer: StubCertificationAuthorityServer;
@@ -18,13 +22,14 @@ describe('Certificate Manage API', () => {
     beforeAll(async () => {
         certificateAuthorityServer = new StubCertificationAuthorityServer('client', 200);
         operatorServer = new StubOperatorServer(200);
-        await new Common().executeSqlFile('initialData.sql');
-        await Application.start();
+        await common.connect();
+        await common.executeSqlFile('initialData.sql');
     });
     afterAll(async () => {
         certificateAuthorityServer._server.close();
         operatorServer._server.close();
-        await Application.stop();
+        await common.disconnect();
+        app.stop();
     });
 
     describe('クライアント証明書 存在確認API', () => {
