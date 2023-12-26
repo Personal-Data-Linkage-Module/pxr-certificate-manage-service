@@ -40,8 +40,8 @@ export default class PostCertificateManageResDto {
             fingerPrint: entity.fingerPrint,
             validPeriodStart: moment(entity.validPeriodStart).tz(config['timezone']).format(DateTimeFormatString),
             validPeriodEnd: moment(entity.validPeriodEnd).tz(config['timezone']).format(DateTimeFormatString),
-            block: block,
-            actor: actor
+            block,
+            actor
         };
         return ret;
     }

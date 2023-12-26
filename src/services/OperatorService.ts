@@ -27,7 +27,7 @@ export default class OperatorService {
         const sessionId = OperatorService.getSessionId(cookies);
         // Cookieからセッションキーが取得できた場合、オペレーターサービスに問い合わせる
         if (typeof sessionId === 'string' && sessionId.length > 0) {
-            const sessionData = JSON.stringify({ sessionId: sessionId });
+            const sessionData = JSON.stringify({ sessionId });
             const options: request.CoreOptions = {
                 headers: {
                     accept: 'application/json',

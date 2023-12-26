@@ -23,9 +23,9 @@ import EntityOperation from '../repositories/EntityOperation';
 import AppError from '../common/AppError';
 import { doGetRequest } from '../common/DoRequest';
 import Config from '../common/Config';
+import urljoin = require('url-join');
 const Message = Config.ReadConfig('./config/message.json');
 const Configure = Config.ReadConfig('./config/config.json');
-import urljoin = require('url-join');
 
 // @Service()
 export default class CertificateManageService {

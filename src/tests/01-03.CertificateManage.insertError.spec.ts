@@ -3,7 +3,7 @@ Released under the MIT license.
 https://opensource.org/licenses/mit-license.php
 */
 import * as supertest from 'supertest';
-import Application from '../index';
+import { Application } from '../resources/config/Application';
 import { Url } from './Common';
 import { Session } from './Session';
 import StubCertificationAuthorityServer from './StubCertificationAuthorityServer';
@@ -15,7 +15,10 @@ const Message = Config.ReadConfig('./config/message.json');
 jest.mock('../repositories/EntityOperation');
 
 // 対象アプリケーションを取得
-const expressApp = Application.express.app;
+const app = new Application();
+const expressApp = app.express.app;
+
+app.start();
 
 // スタブサーバー (認証局サービス)
 let _certAuthServer: StubCertificationAuthorityServer = null;
@@ -27,9 +30,9 @@ describe('certificate-manage API', () => {
     /**
      * 全テスト実行の前処理
      */
-    beforeAll(async () => {
-        await Application.start();
-    });
+    // beforeAll(async () => {
+    //     await Application.start();
+    // });
     /**
      * 各テスト実行の前処理
      */
@@ -40,7 +43,7 @@ describe('certificate-manage API', () => {
      */
     afterAll(async () => {
         // サーバ停止
-        await Application.stop();
+        app.stop();
 
         // モック解除
         jest.deepUnmock('../repositories/EntityOperation');

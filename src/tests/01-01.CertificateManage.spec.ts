@@ -3,7 +3,7 @@ Released under the MIT license.
 https://opensource.org/licenses/mit-license.php
 */
 import * as supertest from 'supertest';
-import Application from '../index';
+import { Application } from '../resources/config/Application';
 import Common, { Url } from './Common';
 import { Session } from './Session';
 import StubOperatorServer, { StubOperatorServer1 } from './StubOperatorServer';
@@ -12,8 +12,11 @@ import Config from '../common/Config';
 const Message = Config.ReadConfig('./config/message.json');
 
 // 対象アプリケーションを取得
-const expressApp = Application.express.app;
+const app = new Application();
+const expressApp = app.express.app;
 const common = new Common();
+
+app.start();
 
 // スタブサーバー（オペレータサービス）
 let _operatorServer: StubOperatorServer = null;
@@ -29,7 +32,6 @@ describe('certificate-manage API', () => {
      * 全テスト実行の前処理
      */
     beforeAll(async () => {
-        await Application.start();
         // DB初期化
         await common.executeSqlFile('initialData.sql');
     });
@@ -38,7 +40,7 @@ describe('certificate-manage API', () => {
      */
     afterAll(async () => {
         // サーバ停止
-        await Application.stop();
+        await app.stop();
     });
     /**
      * 各テスト実行の後処理

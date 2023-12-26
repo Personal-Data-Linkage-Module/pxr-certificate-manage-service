@@ -7,9 +7,9 @@ import CertificateManage from '../repositories/postgres/CertificateManage';
 /* eslint-disable */
 import { Connection, createConnection, getConnectionManager } from 'typeorm';
 import Config from '../common/Config';
-const Message = Config.ReadConfig('./config/message.json');
 /* eslint-enable */
 import fs = require('fs');
+const Message = Config.ReadConfig('./config/message.json');
 
 const connectOption = JSON.parse(fs.readFileSync('./config/ormconfig.json', 'utf-8'));
 // エンティティを設定

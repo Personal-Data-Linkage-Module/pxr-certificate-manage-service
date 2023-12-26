@@ -2,10 +2,12 @@
 Released under the MIT license.
 https://opensource.org/licenses/mit-license.php
 */
+/* eslint-disable */
 import path = require('path');
 import fs = require('fs');
-// eslint-disable-next-line import/first
+import { Connection } from 'typeorm';
 import { connectDatabase } from '../common/Connection';
+/* eslint-enable */
 
 // テスト用にlisten数を無制限に設定
 require('events').EventEmitter.defaultMaxListeners = 0;
@@ -24,6 +26,15 @@ export namespace Url {
  * テスト用共通クラス
  */
 export default class Common {
+    private conn: Connection;
+    async connect () {
+        this.conn = await connectDatabase();
+    }
+
+    async disconnect () {
+        this.conn.destroy();
+    }
+
     /**
      * SQLファイル実行
      * @param fileName
